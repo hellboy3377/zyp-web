@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyp - Your Complete Service Partner</title>
+    <title>Zyp - Your Service Partner</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #7F00FF;
+            --secondary: #D300FF;
+            --accent: #FF00B7;
+            --bg-primary: #f0f2f5;
+            --bg-secondary: #e8ecf0;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --white: #ffffff;
+            --shadow-light: #ffffff;
+            --shadow-dark: #d1d9e6;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,610 +27,482 @@
         }
 
         body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             overflow-x: hidden;
         }
 
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(odd) {
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .shape-1 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            top: 10%;
+            right: 10%;
+        }
+
+        .shape-2 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            border-radius: 30%;
+            top: 60%;
+            left: 5%;
+            animation-duration: 8s;
+        }
+
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            border-radius: 20%;
+            bottom: 20%;
+            right: 15%;
+            animation-duration: 10s;
+        }
+
+        /* Neomorphic Components */
+        .neomorphic {
+            background: var(--bg-primary);
+            box-shadow: 
+                20px 20px 60px var(--shadow-dark),
+                -20px -20px 60px var(--shadow-light);
+            border-radius: 20px;
+        }
+
+        .neomorphic-inset {
+            background: var(--bg-primary);
+            box-shadow: 
+                inset 8px 8px 16px var(--shadow-dark),
+                inset -8px -8px 16px var(--shadow-light);
+            border-radius: 15px;
+        }
+
+        .neomorphic-button {
+            background: linear-gradient(145deg, #e8ecf0, #f0f2f5);
+            box-shadow: 
+                8px 8px 16px var(--shadow-dark),
+                -8px -8px 16px var(--shadow-light);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        .neomorphic-button:hover {
+            box-shadow: 
+                12px 12px 24px var(--shadow-dark),
+                -12px -12px 24px var(--shadow-light);
+            transform: translateY(-2px);
+        }
+
+        .neomorphic-button:active {
+            box-shadow: 
+                inset 4px 4px 8px var(--shadow-dark),
+                inset -4px -4px 8px var(--shadow-light);
+            transform: translateY(0);
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--bg-primary);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 
+                0 8px 32px rgba(127, 0, 255, 0.1),
+                0 2px 8px rgba(0, 0, 0, 0.05);
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
+            font-weight: 800;
             font-size: 1.5rem;
-            font-weight: bold;
+            color: var(--primary);
         }
 
         .logo-icon {
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 
+                8px 8px 16px rgba(127, 0, 255, 0.3),
+                -8px -8px 16px rgba(255, 255, 255, 0.8);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
-        .nav-links a {
+        .nav-links li a {
             text-decoration: none;
-            color: #666;
+            color: var(--text-primary);
             font-weight: 500;
-            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: #8B5CF6;
+        .nav-links li a:hover {
+            color: var(--primary);
+            background: rgba(127, 0, 255, 0.1);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            border-radius: 15px;
             text-decoration: none;
+            font-weight: 600;
+            box-shadow: 
+                8px 8px 16px rgba(127, 0, 255, 0.3),
+                -2px -2px 8px rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 
+                12px 12px 24px rgba(127, 0, 255, 0.4),
+                -4px -4px 12px rgba(255, 255, 255, 0.9);
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 0 2rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            margin-top: 80px;
+            justify-content: space-between;
+            padding: 6rem 2rem;
+            min-height: 80vh;
+            position: relative;
+            background: linear-gradient(135deg, 
+                rgba(127, 0, 255, 0.05) 0%, 
+                rgba(211, 0, 255, 0.05) 50%, 
+                rgba(255, 0, 183, 0.05) 100%);
         }
 
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .hero-content {
+            max-width: 50%;
+            z-index: 2;
+            animation: slideInLeft 1s ease;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         .hero-content h1 {
             font-size: 3.5rem;
             font-weight: 800;
-            line-height: 1.1;
             margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
         }
 
-        .hero-content .highlight {
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        @keyframes textGlow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2); }
         }
 
         .hero-content p {
             font-size: 1.2rem;
-            color: #666;
+            color: var(--text-secondary);
             margin-bottom: 2rem;
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            box-shadow: 
+                12px 12px 24px rgba(127, 0, 255, 0.3),
+                -4px -4px 12px rgba(255, 255, 255, 0.8);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+            box-shadow: 
+                16px 16px 32px rgba(127, 0, 255, 0.4),
+                -6px -6px 16px rgba(255, 255, 255, 0.9);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: #8B5CF6;
-            padding: 1rem 2rem;
-            border: 2px solid #8B5CF6;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
+            background: var(--bg-primary);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: 
+                8px 8px 16px var(--shadow-dark),
+                -8px -8px 16px var(--shadow-light);
         }
 
         .btn-secondary:hover {
-            background: #8B5CF6;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             transform: translateY(-3px);
         }
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
 
         .hero-image {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+            max-width: 40%;
+            z-index: 2;
+            animation: slideInRight 1s ease;
         }
 
-        .hero-image:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
-        .hero-image img {
+        .hero-illustration {
             width: 100%;
+            max-width: 500px;
             height: 400px;
-            object-fit: cover;
-        }
-
-        .floating-star {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #FFB800, #FF8A00);
-            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 4rem;
             color: white;
-            font-size: 24px;
-            animation: float 3s ease-in-out infinite;
+            box-shadow: 
+                20px 20px 60px rgba(127, 0, 255, 0.3),
+                -10px -10px 30px rgba(255, 255, 255, 0.8);
+            animation: heroFloat 4s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
 
-        /* Why Choose Section */
-        .why-choose {
+        /* Services Section */
+        .services {
             padding: 6rem 2rem;
-            background: white;
+            position: relative;
         }
 
         .section-container {
             max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            text-align: center;
+            font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .section-subtitle {
+            text-align: center;
             font-size: 1.2rem;
-            color: #666;
             margin-bottom: 4rem;
+            color: var(--text-secondary);
         }
 
-        .features-grid {
+        .service-category-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 4rem 0 2rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .feature-card {
-            background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .service-card {
+            background: var(--bg-primary);
+            padding: 2.5rem;
+            border-radius: 25px;
+            text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 
+                15px 15px 30px var(--shadow-dark),
+                -15px -15px 30px var(--shadow-light);
         }
 
-        .feature-card:hover {
+        .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            box-shadow: 
+                20px 20px 40px var(--shadow-dark),
+                -20px -20px 40px var(--shadow-light);
         }
 
-        .feature-card::before {
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-
-        .feature-icon.shield {
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
-        }
-
-        .feature-icon.clock {
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
-        }
-
-        .feature-icon.heart {
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 25px 25px 0 0;
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
+            font-size: 3rem;
             margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(127, 0, 255, 0.1), rgba(211, 0, 255, 0.1));
+            border-radius: 20px;
+            box-shadow: 
+                inset 8px 8px 16px rgba(127, 0, 255, 0.05),
+                inset -8px -8px 16px rgba(255, 255, 255, 0.8);
         }
 
-        .service-icon.food { background: linear-gradient(135deg, #FF6B35, #F7931E); }
-        .service-icon.grocery { background: linear-gradient(135deg, #00C851, #00A441); }
-        .service-icon.bike { background: linear-gradient(135deg, #33B5E5, #0099CC); }
-        .service-icon.porter { background: linear-gradient(135deg, #E91E63, #AD1457); }
-        .service-icon.home { background: linear-gradient(135deg, #8B5CF6, #A855F7); }
-        .service-icon.house { background: linear-gradient(135deg, #FFB800, #FF8A00); }
-        .service-icon.plumb { background: linear-gradient(135deg, #00BCD4, #0097A7); }
-        .service-icon.electric { background: linear-gradient(135deg, #FFB800, #FF8A00); }
-        .service-icon.garage { background: linear-gradient(135deg, #9E9E9E, #616161); }
-        .service-icon.shg { background: linear-gradient(135deg, #E91E63, #AD1457); }
-        .service-icon.global { background: linear-gradient(135deg, #8B5CF6, #A855F7); }
-
         .service-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
+            color: var(--primary);
         }
 
         .service-card p {
-            color: #666;
+            color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
 
         .learn-more {
-            color: #8B5CF6;
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             text-decoration: none;
+            border-radius: 15px;
             font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
             transition: all 0.3s ease;
+            box-shadow: 
+                8px 8px 16px rgba(127, 0, 255, 0.3),
+                -2px -2px 8px rgba(255, 255, 255, 0.8);
         }
 
         .learn-more:hover {
-            gap: 1rem;
-        }
-
-        /* Empowering Section */
-        .empowering {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
-            color: white;
-        }
-
-        .empowering-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .empowering-content h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            line-height: 1.2;
-        }
-
-        .empowering-content p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-            opacity: 0.9;
-        }
-
-        .benefits-list {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .benefits-list li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding: 0.5rem 0;
-        }
-
-        .check-icon {
-            width: 24px;
-            height: 24px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .empowering-image {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .empowering-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        .btn-white {
-            background: white;
-            color: #8B5CF6;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-white:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        .about-content h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-        }
-
-        .about-content p {
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: #666;
-            font-weight: 500;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .contact-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #8B5CF6, #A855F7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .contact-card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .contact-card p {
-            color: #666;
+            transform: translateY(-2px);
+            box-shadow: 
+                12px 12px 24px rgba(127, 0, 255, 0.4),
+                -4px -4px 12px rgba(255, 255, 255, 0.9);
         }
 
         /* Footer */
         .footer {
-            background: #1e293b;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 4rem 2rem 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         }
 
         .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 3rem;
         }
 
-        .footer-brand h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand p {
-            color: #94a3b8;
-            line-height: 1.6;
-        }
-
-        .footer-section h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
+        .footer h3, .footer h4 {
             margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer h3 {
+            font-size: 1.8rem;
         }
 
         .footer-links {
@@ -623,38 +510,40 @@
         }
 
         .footer-links li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.8rem;
         }
 
         .footer-links a {
-            color: #94a3b8;
             text-decoration: none;
-            transition: color 0.3s ease;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: #8B5CF6;
+            color: white;
+            padding-left: 5px;
         }
 
         .footer-bottom {
-            border-top: 1px solid #334155;
+            text-align: center;
             margin-top: 3rem;
             padding-top: 2rem;
-            text-align: center;
-            color: #94a3b8;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
 
-        /* Responsive Design */
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 4rem 1rem;
             }
 
-            .hero-container,
-            .about-container,
-            .empowering-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 3rem;
             }
 
             .hero-content h1 {
@@ -663,388 +552,196 @@
 
             .hero-buttons {
                 flex-direction: column;
+                align-items: center;
             }
 
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
+            .hero-image {
+                max-width: 80%;
             }
 
-            .stats-grid {
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .services-grid {
                 grid-template-columns: 1fr;
             }
+
+            .section-title {
+                font-size: 2rem;
+            }
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading animation */
+        /* Additional Animations */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            animation: fadeIn 1s ease forwards;
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .service-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-   <!-- Navigation -->
-<nav class="navbar" id="navbar">
-  <div class="logo">
-    <div class="logo-icon">Z</div>
-    <span>Zyp</span>
-  </div>
+    <!-- Floating Elements -->
+    <div class="floating-element shape-1"></div>
+    <div class="floating-element shape-2"></div>
+    <div class="floating-element shape-3"></div>
 
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <div class="logo-icon">Z</div>
+            <span>Zyp</span>
+        </div>
 
-  <div style="display: flex; gap: 1rem;">
-    <a href="https://funzone.zypgo.in" target="_blank" class="cta-button">FunZone</a>
-    <a href="#contact" class="cta-button">Get Started</a>
-  </div>
-</nav>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#blog">Blog</a></li>
+        </ul>
 
-    <!-- Hero Section -->
+        <div class="cta-buttons">
+            <a href="#fpo-shg" class="cta-button">FPO/SHG Market</a>
+            <a href="https://funzone.zypgo.in" target="_blank" class="cta-button">Funzone Rental</a>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </nav>
+
     <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content fade-in">
-                <h1>Your Complete <span class="highlight">Service Partner</span></h1>
-                <p>From food delivery to home services, from rentals to global marketplace - Zyp brings everything you need right to your doorstep in tier 2-3 cities.</p>
-                <div class="hero-buttons">
-                    <a href="#services" class="btn-primary">Explore Services →</a>
-                    <a href="#about" class="btn-secondary">Join as Partner</a>
-                </div>
+        <div class="hero-content">
+            <h1>Your Complete Service Partner</h1>
+            <p>From local products to rentals and home services - Zyp connects everything you need in Sambalpur and beyond with cutting-edge technology and unmatched reliability.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">Explore Services →</a>
+                <a href="#about" class="btn-secondary">Join as Partner</a>
             </div>
-            <div class="hero-image fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23f1f5f9'/%3E%3Cg transform='translate(100,150)'%3E%3Crect x='0' y='0' width='200' height='100' rx='20' fill='%23334155'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%238B5CF6'/%3E%3Crect x='120' y='20' width='60' height='60' rx='10' fill='%23E91E63'/%3E%3C/g%3E%3C/svg%3E" alt="Delivery Service">
-                <div class="floating-star">⭐</div>
-            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-illustration">🚀</div>
         </div>
     </section>
 
-    <!-- Why Choose Section -->
-    <section class="why-choose" id="why-choose">
-        <div class="section-container">
-            <h2 class="section-title fade-in">Why Choose Zyp?</h2>
-            <p class="section-subtitle fade-in">Built specifically for tier 2-3 cities with local understanding</p>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon shield">🛡️</div>
-                    <h3>Trusted & Verified</h3>
-                    <p>All service providers are background verified</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon clock">⏰</div>
-                    <h3>Quick Response</h3>
-                    <p>Fast service delivery within your city</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon heart">💜</div>
-                    <h3>Local Focus</h3>
-                    <p>Supporting tier 2-3 cities with quality services</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
     <section class="services" id="services">
         <div class="section-container">
-            <h2 class="section-title fade-in">Our Services</h2>
-            <p class="section-subtitle fade-in">Comprehensive solutions for all your daily needs, from essential services to business opportunities</p>
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Empowering communities, making your city more connected</p>
+
+            <h3 id="fpo-shg" class="service-category-title">FPO/SHG Market</h3>
             <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon food">🍽️</div>
-                    <h3>Food Delivery</h3>
-                    <p>Fresh meals from local restaurants delivered to your doorstep</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon grocery">🛒</div>
-                    <h3>Grocery Delivery</h3>
-                    <p>Daily essentials and groceries delivered within hours</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon bike">🚲</div>
-                    <h3>Bike & Scooter Rent</h3>
-                    <p>Affordable two-wheeler rentals for your daily commute</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon porter">🚚</div>
-                    <h3>Porter Services</h3>
-                    <p>Reliable moving and transportation services</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon home">🏠</div>
-                    <h3>PG & Homestay</h3>
-                    <p>Comfortable accommodation options for students and professionals</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon house">🏡</div>
-                    <h3>House Rent</h3>
-                    <p>Find your perfect home with our rental services</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon plumb">🔧</div>
-                    <h3>Plumbing</h3>
-                    <p>Expert plumbing solutions for all your water-related needs</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon electric">⚡</div>
-                    <h3>Electrician</h3>
-                    <p>Professional electrical services and repairs</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon garage">🚗</div>
-                    <h3>Garage Mechanic</h3>
-                    <p>Reliable vehicle maintenance and repair services</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon shg">👥</div>
-                    <h3>SHG Partner</h3>
-                    <p>Empowering self-help groups with business opportunities</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon global">🌐</div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
                     <h3>Global SHG Marketplace</h3>
-                    <p>Connecting local SHG products to global markets</p>
-                    <a href="#" class="learn-more">Learn More →</a>
+                    <p>Connecting Self-Help Groups & FPOs with global buyers. Shop authentic, locally-made products directly from artisans and farmers.</p>
+                    <a href="#fpo-shg" class="learn-more">Explore →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>SHG Partner Network</h3>
+                    <p>Join our growing network of SHGs & FPOs. Access new markets, earn more, and grow rural businesses.</p>
+                    <a href="#fpo-shg" class="learn-more">Explore →</a>
+                </div>
+            </div>
+
+            <h3 id="funzone" class="service-category-title">Funzone Bike Rental</h3>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚲</div>
+                    <h3>Bike & Scooter Rentals</h3>
+                    <p>Affordable, hassle-free two-wheeler rentals for commuting, college, or exploring Sambalpur with ease.</p>
+                    <a href="https://funzone.zypgo.in" target="_blank" class="learn-more">Explore →</a>
+                </div>
+            </div>
+
+            <h3 class="service-category-title">Upcoming Services in Sambalpur</h3>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🍽️</div>
+                    <h3>Food Delivery</h3>
+                    <p>Fresh meals from your favourite local restaurants delivered fast and fresh to your doorstep.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3>Grocery Delivery</h3>
+                    <p>Essentials delivered to your doorstep within hours with our lightning-fast delivery network.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚚</div>
+                    <h3>Porter Services</h3>
+                    <p>Safe and reliable transportation solutions for all your moving and delivery needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>PG & Homestay</h3>
+                    <p>Comfortable accommodation options for students and professionals with verified listings.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Empowering Section -->
-    <section class="empowering">
-        <div class="empowering-container">
-            <div class="empowering-content fade-in">
-                <h2>Empowering Local Communities</h2>
-                <p>Our SHG marketplace connects self-help groups with global opportunities, helping local artisans and producers reach customers worldwide while supporting community development.</p>
-                <ul class="benefits-list">
-                    <li>
-                        <div class="check-icon">✓</div>
-                        <span>Direct market access for SHG products</span>
-                    </li>
-                    <li>
-                        <div class="check-icon">✓</div>
-                        <span>Fair pricing and transparent transactions</span>
-                    </li>
-                    <li>
-                        <div class="check-icon">✓</div>
-                        <span>Global reach for local artisans</span>
-                    </li>
-                </ul>
-                <a href="#" class="btn-white">Join SHG Network</a>
-            </div>
-            <div class="empowering-image fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23f59e0b'/%3E%3Cg transform='translate(50,50)'%3E%3Ccircle cx='75' cy='75' r='30' fill='%23ffffff' opacity='0.3'/%3E%3Ccircle cx='225' cy='75' r='30' fill='%23ffffff' opacity='0.3'/%3E%3Ccircle cx='150' cy='225' r='30' fill='%23ffffff' opacity='0.3'/%3E%3Crect x='100' y='150' width='100' height='50' rx='25' fill='%23ffffff'/%3E%3C/g%3E%3C/svg%3E" alt="Community Empowerment">
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-     <section class="about" id="about">
-        <div class="about-container">
-            <div class="about-image fade-in">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23e2e8f0'/%3E%3Cg transform='translate(100,100)'%3E%3Crect x='0' y='0' width='200' height='200' rx='20' fill='%23334155'/%3E%3Ccircle cx='100' cy='80' r='40' fill='%238B5CF6'/%3E%3Crect x='60' y='140' width='80' height='40' rx='20' fill='%23A855F7'/%3E%3C/g%3E%3C/svg%3E" alt="About Zyp">
-            </div>
-            <div class="about-content fade-in">
-                <h2>About Zyp</h2>
-                <p>Zyp is revolutionizing service delivery in tier 2-3 cities across India. We understand the unique challenges and opportunities in smaller cities and provide tailored solutions that bridge the gap between urban convenience and local community needs.</p>
-                <p>Our platform not only delivers services but also creates employment opportunities, supports local businesses, and empowers communities through our innovative SHG marketplace.</p>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">50K+</div>
-                        <div class="stat-label">Happy Customers</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Service Partners</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">25+</div>
-                        <div class="stat-label">Cities Served</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100+</div>
-                        <div class="stat-label">SHG Partners</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="section-container">
-            <h2 class="section-title fade-in">Get in Touch</h2>
-            <p class="section-subtitle fade-in">Ready to experience the Zyp difference? Connect with us today</p>
-            <div class="contact-grid">
-                <div class="contact-card fade-in">
-                    <div class="contact-icon">📱</div>
-                    <h3>Download App</h3>
-                    <p>Get the Zyp app from Play Store or App Store</p>
-                </div>
-                <div class="contact-card fade-in">
-                    <div class="contact-icon">📞</div>
-                    <h3>Call Us</h3>
-                    <p>+91 98765 43210<br>Available 24/7</p>
-                </div>
-                <div class="contact-card fade-in">
-                    <div class="contact-icon">✉️</div>
-                    <h3>Email Us</h3>
-                    <p>support@zyp.com<br>We reply within 2 hours</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-brand">
+            <div>
                 <h3>Zyp</h3>
-                <p>Your complete service partner for tier 2-3 cities. Connecting communities, empowering businesses, and delivering excellence.</p>
+                <p>Your complete service partner for Sambalpur. Empowering communities and connecting businesses with innovative technology solutions.</p>
             </div>
-            <div class="footer-section">
+            <div>
                 <h4>Services</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Food Delivery</a></li>
-                    <li><a href="#">Grocery Delivery</a></li>
-                    <li><a href="#">Vehicle Rental</a></li>
-                    <li><a href="#">Home Services</a></li>
-                    <li><a href="#">SHG Marketplace</a></li>
+                    <li><a href="#fpo-shg">FPO/SHG Market</a></li>
+                    <li><a href="#funzone">Funzone Bike Rental</a></li>
+                    <li><a href="#services">Upcoming Services</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
+            <div>
                 <h4>Company</h4>
                 <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Partner with Us</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#careers">Careers</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h4>Support</h4>
+            <div>
+                <h4>Connect</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Zyp. All rights reserved. Made with ❤️ for tier 2-3 cities.</p>
+            <p>&copy; 2025 Zyp. All rights reserved. | Designed with ❤️ in Sambalpur</p>
         </div>
     </footer>
 
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Mobile menu toggle (if needed)
-        const mobileMenuToggle = document.createElement('button');
-        mobileMenuToggle.innerHTML = '☰';
-        mobileMenuToggle.style.cssText = `
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #333;
-        `;
-
-        // Add mobile menu functionality
-        if (window.innerWidth <= 768) {
-            const navbar = document.querySelector('.navbar');
-            const navLinks = document.querySelector('.nav-links');
-            
-            navbar.insertBefore(mobileMenuToggle, navbar.lastElementChild);
-            mobileMenuToggle.style.display = 'block';
-            
-            mobileMenuToggle.addEventListener('click', function() {
-                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.right = '0';
-                navLinks.style.background = 'white';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.padding = '1rem';
-                navLinks.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            });
-        }
-
-        // Add loading animation
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '1';
-        });
-
-        // Initialize with fade effect
-        document.body.style.opacity = '0';
-        document.body.style.transition = 'opacity 0.5s ease';
-    </script>
 </body>
 </html>
