@@ -190,12 +190,33 @@ body {
     color: var(--primary);
     background: rgba(127, 0, 255, 0.1);
 }
-
-.app-buttons {
-    display: flex;
-    gap: 0.5rem;
-    margin-left: 1rem;
+.store-button {
+  padding: 0.5rem 1rem;
+  background: var(--white);
+  color: var(--text-primary);
+  border: 1px solid rgba(67, 0, 255, 0.2);
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
+
+.store-button:hover {
+  background: var(--primary);
+  color: var(--white);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(67, 0, 255, 0.2);
+}
+
+.store-icon {
+  font-size: 0.9rem;
+}
+
 
 .cta-buttons {
     display: flex;
